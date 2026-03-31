@@ -6,17 +6,17 @@ Layton Daugherty and Garett Owens
 
 List of Deliverables 
 
-Playable tower defense game 
+	Playable tower defense game 
 
-Map inspiration from BTD 6 
+	Map inspiration from BTD 6 
 
-Enemy wave system  
+	Enemy wave system  
 
-Placeable towers 
+	Placeable towers 
 
-Basic UI 
+	Basic UI 
 
-Assets (sprites and sounds) 
+	Assets (sprites and sounds) 
 
 Scope of demoing deliverables 
 
@@ -30,8 +30,15 @@ Scope of demoing deliverables
 
 Rough Assignment of Work 
 
-Garett – Map/levels, Assets for enemies and towers 
+	Garett – Map/levels, Assets for enemies and towers 
 
-Layton – Tower and enemy code, hitboxes, and UI 
+	Layton – Tower and enemy code, hitboxes, and UI 
 
+Freely Available Assets 
+
+	https://kenney.nl/assets?search=Tower+Defense 
+
+	https://itch.io/search?q=Tower+defense+assets 
+
+	https://opengameart.org/ 
 
