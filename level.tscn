@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://j7dxmiowv5e8"]
+
+[ext_resource type="Script" uid="uid://b1x7g7lx8e6ep" path="res://path_follow_2d.gd" id="1_vonw3"]
+[ext_resource type="Texture2D" uid="uid://caqlcv0vn5pu8" path="res://icon.svg" id="2_oi3di"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0b4ue"]
+
+[sub_resource type="Curve2D" id="Curve2D_f2txt"]
+bake_interval = 10.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -0.97497845, -6, 0, 0, 0, 0, -0.97497845, 256, 0, 0, 0, 0, 1185.9999, 256, 0, 0, 0, 0, 1185.9999, 619, 0, 0, 0, 0, -0.97497845, 615, 0, 0, 0, 0, -3.0250216, 955, 0, 0, 0, 0, 1176.7748, 945, 0, 0, 0, 0, 1176.7748, 1235, 0, 0, 0, 0, -7.6376185, 1230)
+}
+point_count = 9
+
+[node name="Level" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("ViewportTexture_0b4ue")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(16.812777, 0)
+scale = Vector2(1.9394498, 1)
+curve = SubResource("Curve2D_f2txt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-0.97497845, -6)
+rotation = 1.5707964
+script = ExtResource("1_vonw3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(20.57995, 24.277622)
+scale = Vector2(0.6784383, 0.62066215)
+texture = ExtResource("2_oi3di")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1153, 618)
+zoom = Vector2(0.3, 0.3)
