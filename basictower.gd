@@ -1,6 +1,7 @@
 extends Node2D
 
 var enemies_in_range = []
+var attack_speed = 100
 
 func _on_area_2d_body_entered(body):
 	if body is PathFollow2D:

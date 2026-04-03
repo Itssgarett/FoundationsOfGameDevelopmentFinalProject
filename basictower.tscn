@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://biijaw0sg1v0u"]
+
+[ext_resource type="Script" uid="uid://djg260ylweq27" path="res://basictower.gd" id="1_rwt66"]
+[ext_resource type="Texture2D" uid="uid://c7fsh0un15lo" path="res://assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile249.png" id="2_3or8l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1sas"]
+radius = 47.26521
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vedim"]
+radius = 324.32236
+
+[node name="BasicTower" type="Node2D"]
+script = ExtResource("1_rwt66")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3or8l")
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource("CircleShape2D_k1sas")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_vedim")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_area_2d_body_exited"]
