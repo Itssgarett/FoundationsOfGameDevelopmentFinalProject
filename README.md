@@ -41,4 +41,3 @@ Freely Available Assets
 	https://itch.io/search?q=Tower+defense+assets 
 
 	https://opengameart.org/ 
-
