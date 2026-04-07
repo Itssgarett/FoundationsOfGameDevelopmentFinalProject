@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dlp3xhle2flh7"]
+
+[ext_resource type="Script" uid="uid://djg260ylweq27" path="res://tower.gd" id="1_i01uh"]
+[ext_resource type="Texture2D" uid="uid://cc5koiy3qv6or" path="res://assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile250.png" id="2_i01uh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1sas"]
+radius = 47.26521
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vedim"]
+radius = 324.32236
+
+[node name="BasicTower" type="Node2D" unique_id=478582488]
+script = ExtResource("1_i01uh")
+attack_delay = 0.5
+damage = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1742361505]
+position = Vector2(1, -1)
+scale = Vector2(3.765625, 3.75)
+texture = ExtResource("2_i01uh")
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=1601602533]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=1155985573]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_k1sas")
+metadata/_edit_group_ = true
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1730266195]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=400232527]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_vedim")
+metadata/_edit_group_ = true
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=1433133930]
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_area_2d_body_exited"]

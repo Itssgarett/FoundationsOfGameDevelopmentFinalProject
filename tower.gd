@@ -1,8 +1,10 @@
 extends Node2D
 
+@export var attack_delay = 1.0
+@export var damage = 1
+
 var enemies_in_range = []
 var attack_timer = 0.0
-var attack_delay = 1.0
 
 func _on_detection_area_area_entered(area):
 	var enemy = area.get_parent()

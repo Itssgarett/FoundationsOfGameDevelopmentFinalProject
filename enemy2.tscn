@@ -1,20 +1,19 @@
-[gd_scene format=3 uid="uid://ocyruxdofea6"]
+[gd_scene format=3 uid="uid://deccsd65gm3hm"]
 
-[ext_resource type="Script" uid="uid://b1x7g7lx8e6ep" path="res://enemy.gd" id="1_7k104"]
-[ext_resource type="Texture2D" uid="uid://el3xv3l3xs5n" path="res://assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile271.png" id="2_4gyqm"]
+[ext_resource type="Script" uid="uid://b1x7g7lx8e6ep" path="res://enemy.gd" id="1_jugo2"]
+[ext_resource type="Texture2D" uid="uid://d13eshitbgs25" path="res://assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile270.png" id="2_jugo2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 radius = 56.0803
 
 [node name="PathFollow2D" type="PathFollow2D" unique_id=759939666]
-script = ExtResource("1_7k104")
-speed = 100
+script = ExtResource("1_jugo2")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=179037763]
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1033908954]
 scale = Vector2(2.2656248, 1.6718748)
-texture = ExtResource("2_4gyqm")
+texture = ExtResource("2_jugo2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2000869850]
 position = Vector2(1, 1)

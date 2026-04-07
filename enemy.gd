@@ -1,8 +1,8 @@
 extends PathFollow2D
 
-@export var speed = 100
-
-var health = 1
+## Different speed and health than enemy.
+@export var speed = 200
+var health = 3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
