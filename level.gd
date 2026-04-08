@@ -97,10 +97,10 @@ func place_tower(pos):
 	tower.position = pos
 	add_child(tower)
 	
-func is_on_path(position):
+func is_on_path(pos):
 	var tilemap = $TileMap   # change name if needed
 	
-	var cell = tilemap.local_to_map(tilemap.to_local(position))
+	var cell = tilemap.local_to_map(tilemap.to_local(pos))
 	
 	var source_id = tilemap.get_cell_source_id(0, cell)
 	var atlas_coords = tilemap.get_cell_atlas_coords(0, cell)
