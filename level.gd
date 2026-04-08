@@ -54,6 +54,17 @@ func _unhandled_input(event):
 		if placing_tower:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				
+				var mouse_pos = get_global_mouse_position()
+				
+				if is_on_path(mouse_pos):
+					$UI/InstructionLabel.text = "Can't place here"
+					$UI/InstructionLabel.visible = true
+			
+					await get_tree().create_timer(1.5).timeout
+			
+					$UI/InstructionLabel.visible = false
+					return
+				
 				var cost = 0 
 				if selected_tower == 1:
 					cost = tower1_cost
@@ -64,14 +75,16 @@ func _unhandled_input(event):
 					money -= cost
 					update_money_ui()
 	
-					place_tower(get_global_mouse_position())
+					place_tower(mouse_pos)
 	
 					placing_tower = false
 					$UI/InstructionLabel.visible = false
 				else:
-					print("Not enough money")
-					placing_tower = false
+					$UI/InstructionLabel.text = "Not enough money!"
+					$UI/InstructionLabel.visible = true
+					await get_tree().create_timer(1.5).timeout
 					$UI/InstructionLabel.visible = false
+					placing_tower = false
 
 func place_tower(pos):
 	print("PLACING TOWER")
@@ -83,6 +96,24 @@ func place_tower(pos):
 		tower = tower_scene2.instantiate()
 	tower.position = pos
 	add_child(tower)
+	
+func is_on_path(position):
+	var tilemap = $TileMap   # change name if needed
+	
+	var cell = tilemap.local_to_map(tilemap.to_local(position))
+	
+	var source_id = tilemap.get_cell_source_id(0, cell)
+	var atlas_coords = tilemap.get_cell_atlas_coords(0, cell)
+	
+	return source_id == 3 and atlas_coords in [
+		Vector2i(17,8),
+
+		Vector2i(17,6),
+		Vector2i(11,4),
+		Vector2i(13,3),
+		Vector2i(14,3),
+		Vector2i(13,4),
+		]
 
 func update_money_ui():
 	$UI/MoneyLabel.text = "Money: " + str(money)
@@ -97,6 +128,7 @@ func _on_tower_button_pressed() -> void:
 	placing_tower = true
 	print("Tower 1 Selected")
 	
+	$UI/InstructionLabel.text = "Click on the map to place the tower"
 	$UI/InstructionLabel.visible = true
 	
 
@@ -106,4 +138,5 @@ func _on_tower_button_2_pressed() -> void:
 	placing_tower = true
 	print("Tower 2 Selected")
 	
+	$UI/InstructionLabel.text = "Click on the map to place the tower"
 	$UI/InstructionLabel.visible = true
