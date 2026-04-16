@@ -13,16 +13,20 @@ var money = 100
 var tower1_cost = 100
 var tower2_cost = 200
 var preview_tower = null
-var selected_tower = 1
+var selected_tower = 1 
+var player_health = 10
+var game_over = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_money_ui()
+	update_health_ui()
 	spawn_rounds()
 
 func spawn_rounds():
-	while true: 
-		print("Round ", current_round)
+	while true:
+		if game_over:
+			return
 		
 		await spawn_round(enemies_per_round)
 		current_round += 1
@@ -32,10 +36,16 @@ func spawn_rounds():
 
 func spawn_round(amount):
 	for i in range(amount):
+		if game_over:
+			return
+			
 		spawn_enemy()
 		await get_tree().create_timer(0.5).timeout
 		
 func spawn_enemy():
+	if game_over:
+		return
+		
 	var enemy
 	if current_round >= 5:
 		if randi() % 2 ==0:
@@ -118,9 +128,16 @@ func is_on_path(pos):
 func update_money_ui():
 	$UI/MoneyLabel.text = "Money: " + str(money)
 
+func update_health_ui():
+	$UI/HealthLabel.text = "Health: " + str(player_health)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if player_health <= 0:
+		for child in $UI.get_children():
+			child.visible = false
+			$UI/GameOverLabel.visible = true
+			get_tree().paused = true
 
 
 func _on_tower_button_pressed() -> void:
@@ -140,3 +157,14 @@ func _on_tower_button_2_pressed() -> void:
 	
 	$UI/InstructionLabel.text = "Click on the map to place the tower"
 	$UI/InstructionLabel.visible = true
+
+
+
+func _on_end_zone_area_entered(area):
+	var enemy = area.get_parent()
+	
+	if enemy.has_method("take_damage"):
+		player_health -= 1
+		update_health_ui()
+		
+		enemy.queue_free()

@@ -4521,6 +4521,9 @@ point_count = 13
 
 [sub_resource type="LabelSettings" id="LabelSettings_n6hdu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2orkt"]
+size = Vector2(258, 53)
+
 [node name="Level" type="Node2D" unique_id=771842101 groups=["level"]]
 script = ExtResource("1_oi3di")
 tower_scene = ExtResource("2_1ainy")
@@ -4592,9 +4595,10 @@ expand_icon = true
 anchors_preset = -1
 anchor_left = 0.004
 anchor_right = 0.004
-offset_left = 0.39199972
-offset_right = 89.392
-offset_bottom = 23.0
+offset_left = 1.3919997
+offset_top = 23.0
+offset_right = 90.392
+offset_bottom = 46.0
 text = "Money: 100"
 label_settings = SubResource("LabelSettings_n6hdu")
 
@@ -4608,11 +4612,12 @@ horizontal_alignment = 1
 metadata/_edit_group_ = true
 
 [node name="TowerMoneyLabel2" type="Label" parent="UI" unique_id=1391885769]
-offset_left = 1032.0
+offset_left = 979.0
 offset_top = 283.0
-offset_right = 1105.0
+offset_right = 1153.0
 offset_bottom = 306.0
 text = "Cost: 200"
+horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_group_ = true
 
@@ -4631,5 +4636,30 @@ grow_horizontal = 2
 text = "Click a tower, then click on the map to place it"
 horizontal_alignment = 1
 
+[node name="HealthLabel" type="Label" parent="UI" unique_id=309937813]
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 95.0
+offset_bottom = 24.0
+text = "Health: 10"
+
+[node name="GameOverLabel" type="Label" parent="UI" unique_id=1645028727]
+visible = false
+offset_left = 446.0
+offset_top = 148.0
+offset_right = 831.0
+offset_bottom = 430.0
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndZone" type="Area2D" parent="." unique_id=1102871225]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone" unique_id=1468090416]
+position = Vector2(2503, 1802.5)
+shape = SubResource("RectangleShape2D_2orkt")
+
 [connection signal="pressed" from="UI/TowerButton" to="." method="_on_tower_button_pressed"]
 [connection signal="pressed" from="UI/TowerButton2" to="." method="_on_tower_button_2_pressed"]
+[connection signal="area_entered" from="EndZone" to="." method="_on_end_zone_area_entered"]
+[connection signal="body_entered" from="EndZone" to="." method="_on_end_zone_body_entered"]
