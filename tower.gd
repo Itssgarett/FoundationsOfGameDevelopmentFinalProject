@@ -1,8 +1,10 @@
 extends Node2D
 
+@export var bullet_scene: PackedScene
 @export var attack_delay = 1.0
 @export var damage = 1
 
+var current_target = null
 var enemies_in_range = []
 var attack_timer = 0.0
 
@@ -19,28 +21,37 @@ func _on_detection_area_area_exited(area):
 	
 	if enemy in enemies_in_range:
 		enemies_in_range.erase(enemy)
+	
+	if enemy == current_target:
+		current_target = null
 
 func _process(delta):
 	if enemies_in_range.size() > 0:
 		attack_timer -= delta
 		
-		if attack_timer <= 0:
-			
-			var enemy = enemies_in_range[0]
-			
-			if not is_instance_valid(enemy):
-				enemies_in_range.remove_at(0)
-				return
-			
-			print("ATTACKING")
-			attack(enemy)
-			
+		# Clean invalid enemies
+		enemies_in_range = enemies_in_range.filter(func(e): return is_instance_valid(e))
+		
+		# If no target OR target is dead → pick new one
+		if current_target == null or not is_instance_valid(current_target):
+			if enemies_in_range.size() > 0:
+				current_target = enemies_in_range[0]
+			else:
+				current_target = null
+		
+		if current_target != null and attack_timer <= 0:
+			attack(current_target)
 			attack_timer = attack_delay
 
 func attack(enemy):
 	if enemy != null:
-		enemy.take_damage(1)
+		look_at(enemy.global_position)
+		
+		var bullet = bullet_scene.instantiate()
+		bullet.global_position = global_position
+		bullet.target = enemy
+		
+		get_tree().current_scene.add_child(bullet)
 
-# Delay to shoot when placed
 func _ready():
 	attack_timer = attack_delay
