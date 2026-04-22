@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://0v0wk8svwata" path="res://assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile262.png" id="7_2orkt"]
 [ext_resource type="Texture2D" uid="uid://c7fsh0un15lo" path="res://assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile249.png" id="7_n6hdu"]
 [ext_resource type="Texture2D" uid="uid://cc5koiy3qv6or" path="res://assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile250.png" id="10_8cye3"]
+[ext_resource type="PackedScene" uid="uid://dymgvgab56wj7" path="res://upgrade_ui.tscn" id="12_aicyk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ainy"]
 texture = ExtResource("3_f2txt")
@@ -4658,6 +4659,8 @@ vertical_alignment = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone" unique_id=1468090416]
 position = Vector2(2503, 1802.5)
 shape = SubResource("RectangleShape2D_2orkt")
+
+[node name="UpgradePanel" parent="." unique_id=1701252238 instance=ExtResource("12_aicyk")]
 
 [connection signal="pressed" from="UI/TowerButton" to="." method="_on_tower_button_pressed"]
 [connection signal="pressed" from="UI/TowerButton2" to="." method="_on_tower_button_2_pressed"]

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dh83u7np8e6qh"]
+
+[ext_resource type="Script" uid="uid://dr3j6b6se2j7t" path="res://main_menu.gd" id="1_06t4h"]
+
+[node name="MainMenu" type="Control" unique_id=1857347405]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_06t4h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=338579707]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 645.0
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1714213464]
+layout_mode = 2
+text = "Tower Defence Game"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=1982117559]
+layout_mode = 2
+text = "Start"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1892911757]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

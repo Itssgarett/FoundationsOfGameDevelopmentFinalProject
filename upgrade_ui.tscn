@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dymgvgab56wj7"]
+
+[ext_resource type="Script" uid="uid://bdilral6mkg2p" path="res://upgrade_ui.gd" id="1_j3xiq"]
+
+[node name="UpgradeUI" type="Control" unique_id=1701252238]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_j3xiq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1225818045]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=289772570]
+visible = false
+layout_mode = 2
+text = "Upgrade Tower"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1350327945]
+visible = false
+layout_mode = 2
+text = "Upgrade Damage"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=157943504]
+visible = false
+layout_mode = 2
+text = "Upgrade Range"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1920897794]
+visible = false
+layout_mode = 2
+text = "Sell"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_upgrade_damage_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_upgrade_range_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_sell_pressed"]
