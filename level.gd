@@ -5,6 +5,7 @@ extends Node2D
 @export var enemy_scene: PackedScene
 @export var enemy_scene2: PackedScene
 
+
 var enemies_alive = 0
 var current_round = 1 
 var enemies_per_round = 5 
@@ -17,6 +18,10 @@ var selected_tower = 1
 var player_health = 10
 var game_over = false
 var round_active = false
+
+var active_tower = null
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -93,11 +98,15 @@ func place_tower(pos):
 	print("PLACING TOWER")
 	
 	var tower
-	if selected_tower ==1:
+	if selected_tower == 1:
 		tower = tower_scene.instantiate()
 	else:
 		tower = tower_scene2.instantiate()
+	
 	tower.position = pos
+	
+	tower.connect("tower_selected", _on_tower_selected)
+	
 	add_child(tower)
 	
 func is_on_path(pos):
@@ -179,3 +188,15 @@ func _on_end_zone_area_entered(area):
 		
 		enemies_alive -= 1
 		enemy.queue_free()
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"): # usually ESC
+		get_tree().change_scene_to_file("res://MainMenu.tscn")
+	if event is InputEventMouseButton and event.pressed:
+		if active_tower == null:
+			$UpgradePanel.visible = false
+
+func _on_tower_selected(tower):
+	active_tower = tower
+	$UpgradePanel.visible = true
+	$UpgradePanel.set_tower(tower)

@@ -13,6 +13,8 @@ radius = 324.32236
 [node name="BasicTower" type="Node2D" unique_id=478582488]
 script = ExtResource("1_vedim")
 bullet_scene = ExtResource("2_jbe1c")
+attack_delay = null
+damage = null
 
 [node name="Base" type="Node2D" parent="." unique_id=625827911]
 

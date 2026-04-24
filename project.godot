@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="FoundationsOfGameDevelopmentFinalProject"
-run/main_scene="uid://j7dxmiowv5e8"
+run/main_scene="uid://dh83u7np8e6qh"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [rendering]

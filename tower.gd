@@ -3,6 +3,9 @@ extends Node2D
 @export var bullet_scene: PackedScene
 @export var attack_delay = 0.5
 @export var damage = 1
+@export var range = 100
+
+signal tower_selected(tower)
 
 var current_target = null
 var enemies_in_range = []
@@ -53,3 +56,14 @@ func attack(enemy):
 
 func _ready():
 	attack_timer = attack_delay
+	$CollisionArea.input_event.connect(_on_input_event)
+
+func _on_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		emit_signal("tower_selected", self)
+		
+func upgrade_damage():
+	damage += 1
+
+func upgrade_range():
+	range += 20
