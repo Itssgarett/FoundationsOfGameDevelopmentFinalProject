@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dlp3xhle2flh7"]
 
 [ext_resource type="Script" uid="uid://djg260ylweq27" path="res://tower.gd" id="1_i01uh"]
+[ext_resource type="PackedScene" uid="uid://da881fsqkw48m" path="res://bullet.tscn" id="2_gvcb1"]
 [ext_resource type="Texture2D" uid="uid://cc5koiy3qv6or" path="res://assets/kenney_tower-defense-top-down/PNG/Default size/towerDefense_tile250.png" id="2_i01uh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1sas"]
@@ -11,7 +12,8 @@ radius = 324.32236
 
 [node name="BasicTower" type="Node2D" unique_id=478582488]
 script = ExtResource("1_i01uh")
-attack_delay = 0.5
+bullet_scene = ExtResource("2_gvcb1")
+attack_delay = 1.0
 damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1742361505]

@@ -16,25 +16,18 @@ var preview_tower = null
 var selected_tower = 1 
 var player_health = 10
 var game_over = false
+var round_active = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_money_ui()
 	update_health_ui()
-	spawn_rounds()
-
-func spawn_rounds():
-	while true:
-		if game_over:
-			return
-		
-		await spawn_round(enemies_per_round)
-		current_round += 1
-		enemies_per_round += 5
-		
-		await get_tree().create_timer(3.0).timeout
+	update_round_ui()
+	spawn_round(enemies_per_round)
 
 func spawn_round(amount):
+	round_active = true
+	
 	for i in range(amount):
 		if game_over:
 			return
@@ -138,7 +131,24 @@ func _process(_delta):
 			child.visible = false
 			$UI/GameOverLabel.visible = true
 			get_tree().paused = true
+			return
+			
+	if enemies_alive == 0 and round_active and !game_over:
+		round_active = false
+		start_next_round()
 
+func start_next_round():
+	current_round += 1
+	enemies_per_round += 5
+	
+	update_round_ui()
+	
+	print("Starting Round:", current_round)
+	
+	spawn_round(enemies_per_round)
+
+func update_round_ui():
+	$UI/RoundLabel.text = "Round: " + str(current_round)
 
 func _on_tower_button_pressed() -> void:
 	selected_tower = 1
@@ -167,4 +177,5 @@ func _on_end_zone_area_entered(area):
 		player_health -= 1
 		update_health_ui()
 		
+		enemies_alive -= 1
 		enemy.queue_free()

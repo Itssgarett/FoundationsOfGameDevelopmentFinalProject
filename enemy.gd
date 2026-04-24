@@ -14,11 +14,10 @@ func take_damage(amount):
 		die()
 
 func die():
-	print("ENEMY DIED")
-	
 	var level = get_tree().get_first_node_in_group("level")
 	if level:
 		level.money += 10
 		level.update_money_ui()
+		level.enemies_alive -= 1
 		
 	queue_free()

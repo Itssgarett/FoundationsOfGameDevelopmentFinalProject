@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var bullet_scene: PackedScene
-@export var attack_delay = 1.0
+@export var attack_delay = 0.5
 @export var damage = 1
 
 var current_target = null
@@ -10,9 +10,7 @@ var attack_timer = 0.0
 
 func _on_detection_area_area_entered(area):
 	var enemy = area.get_parent()
-	
-	print("ENTERED:", enemy)
-	
+
 	if enemy.has_method("take_damage") and not enemies_in_range.has(enemy):
 		enemies_in_range.append(enemy)
 

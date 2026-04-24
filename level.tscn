@@ -4653,6 +4653,13 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RoundLabel" type="Label" parent="UI" unique_id=1794468494]
+offset_left = 614.0
+offset_top = -1.0
+offset_right = 686.0
+offset_bottom = 30.0
+text = "Round: 1"
+
 [node name="EndZone" type="Area2D" parent="." unique_id=1102871225]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone" unique_id=1468090416]

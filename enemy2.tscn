@@ -8,6 +8,7 @@ radius = 56.0803
 
 [node name="PathFollow2D" type="PathFollow2D" unique_id=759939666]
 script = ExtResource("1_jugo2")
+speed = 150
 
 [node name="Area2D" type="Area2D" parent="." unique_id=179037763]
 
