@@ -9,7 +9,7 @@ signal tower_selected(tower)
 
 var current_target = null
 var enemies_in_range = []
-var attack_timer = 0.0
+var attack_timer: float = 0.0
 
 func _on_detection_area_area_entered(area):
 	var enemy = area.get_parent()
@@ -27,7 +27,12 @@ func _on_detection_area_area_exited(area):
 		current_target = null
 
 func _process(delta):
+	if attack_timer == null:
+		attack_timer = attack_delay
+	
 	if enemies_in_range.size() > 0:
+		if attack_timer == null:
+			attack_timer = attack_delay
 		attack_timer -= delta
 		
 		# Clean invalid enemies
